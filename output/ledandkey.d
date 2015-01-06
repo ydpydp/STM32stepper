@@ -1,0 +1,14 @@
+.\output\ledandkey.o: user\LedAndKey.c
+.\output\ledandkey.o: .\cmsis\stm32f10x.h
+.\output\ledandkey.o: .\cmsis\core_cm3.h
+.\output\ledandkey.o: C:\Keil\ARM\ARMCC\bin\..\include\stdint.h
+.\output\ledandkey.o: .\cmsis\system_stm32f10x.h
+.\output\ledandkey.o: .\headers\stm32f10x_conf.h
+.\output\ledandkey.o: .\lib\inc\stm32f10x_gpio.h
+.\output\ledandkey.o: .\cmsis\stm32f10x.h
+.\output\ledandkey.o: .\lib\inc\stm32f10x_rcc.h
+.\output\ledandkey.o: .\lib\inc\stm32f10x_tim.h
+.\output\ledandkey.o: .\lib\inc\stm32f10x_usart.h
+.\output\ledandkey.o: .\lib\inc\stm32f10x_wwdg.h
+.\output\ledandkey.o: .\lib\inc\misc.h
+.\output\ledandkey.o: user\LedAndKey.h

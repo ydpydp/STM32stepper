@@ -1,0 +1,5 @@
+-c --cpu Cortex-M3 -D__EVAL -D__MICROLIB -g -O0 --apcs=interwork -I.\cmsis -I.\headers -I.\lib\inc 
+-I C:\Keil\ARM\RV31\INC 
+-I C:\Keil\ARM\CMSIS\Include 
+-I C:\Keil\ARM\Inc\ST\STM32F10x 
+-DUSE_STDPERIPH_DRIVER -DSTM32F10X_MD -o ".\output\rtc_time.o" --omf_browse ".\output\rtc_time.crf" --depend ".\output\rtc_time.d" "user\RTC_Time.c"

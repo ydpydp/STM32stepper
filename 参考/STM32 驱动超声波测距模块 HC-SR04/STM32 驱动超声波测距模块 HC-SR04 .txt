@@ -1,0 +1,26 @@
+void  ultrasonic_data(void)
+{
+        u16     j;                                                    //定义变量后默认赋值为0
+        GPIO_SetBits(GPIOA,GPIO_Pin_3);
+        delay_us(10);
+        GPIO_ResetBits(GPIOA,GPIO_Pin_3);                        //启动脉冲
+        while(GPIO_ReadInputDataBit(GPIOA,GPIO_Pin_4)==0);  
+        while(GPIO_ReadInputDataBit(GPIOA,GPIO_Pin_4))      //开始对返回的信号进行计时
+        {
+            delay_us(1);
+            j++;
+        }
+        delay_ms(30);
+        distance=(34*j/1000)+2;      
+        j=0;
+        
+  }
+
+while(1)
+   {
+           ultrasonic_data();
+        USART_ClearFlag(USART1,USART_FLAG_TC);       
+           USART_SendData(USART1,distance);
+           while(USART_GetFlagStatus(USART1, USART_FLAG_TXE) == RESET);
+
+    }

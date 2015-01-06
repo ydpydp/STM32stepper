@@ -1,0 +1,58 @@
+写WEB程序的时候，发现如果加上步进电机控制的话，就会出现问题。原因是如果把电机控制放在uip循环中处理的话，因为控制电机涉及到时间问题。所以必须解决，想到的方法就是多任务的思想。把步进电机的处理放在定时器中断里面。这样的话就能避免问题了。顺便学习了库函数操作定时器。这里用到的定时器功能简单，只需要产生更新中断。
+
+下面是定时器初始化代码
+
+
+//定时器3初始化
+//arr：定时重装值
+//psc:分频值
+void TIM3_Init(uint16_t arr, uint16_t psc)
+{
+	TIM_TimeBaseInitTypeDef TIM_TimeBaseStructure;
+	NVIC_InitTypeDef NVIC_InitStructure;
+	
+	RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM3, ENABLE);	//开启TIM3时钟
+	
+	//定时器3配置，重载值、分频值、分频系数、计数模式
+	TIM_TimeBaseStructure.TIM_Period = arr;
+	TIM_TimeBaseStructure.TIM_Prescaler = psc;
+	TIM_TimeBaseStructure.TIM_ClockDivision = TIM_CKD_DIV1;
+	TIM_TimeBaseStructure.TIM_CounterMode = TIM_CounterMode_Up;
+	
+	TIM_TimeBaseInit(TIM3, &TIM_TimeBaseStructure);
+	TIM_ITConfig(TIM3, TIM_IT_Update, ENABLE); 	//允许定时更新中断
+	
+	//中断配置
+	NVIC_InitStructure.NVIC_IRQChannel = TIM3_IRQn;
+	NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 0;
+	NVIC_InitStructure.NVIC_IRQChannelSubPriority = 3;
+	NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
+	NVIC_Init(&NVIC_InitStructure);
+	
+	TIM_Cmd(TIM3, ENABLE); 	//使能定时器3
+}
+//定时器中断处理函数
+
+void TIM3_IRQHandler(void)
+{
+  	static uint8_t i;	//相序计数器
+	
+	if(TIM_GetITStatus(TIM3, TIM_IT_Update) != RESET)
+	{
+		TIM_ClearITPendingBit(TIM3, TIM_IT_Update);
+		Motorcw(i);		//电机正转
+		i++;
+		if(i==4)
+		  i = 0;
+	}
+}
+
+//电机正传代码函数
+
+void Motorcw(uint8_t i)
+
+{
+	
+	GPIO_Write(GPIOC,phasecw[i]);
+
+}

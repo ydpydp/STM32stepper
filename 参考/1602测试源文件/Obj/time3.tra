@@ -1,0 +1,30 @@
+*** Creating Trace Output File '..\Obj\time3.tra' Ok.
+### Preparing for ADS-LD.
+### Creating ADS-LD Command Line
+### List of Objects: adding '"..\obj\main.o"'
+### List of Objects: adding '"..\obj\stm32f10x_it.o"'
+### List of Objects: adding '"..\obj\1602.o"'
+### List of Objects: adding '"..\obj\misc.o"'
+### List of Objects: adding '"..\obj\stm32f10x_exti.o"'
+### List of Objects: adding '"..\obj\stm32f10x_gpio.o"'
+### List of Objects: adding '"..\obj\stm32f10x_flash.o"'
+### List of Objects: adding '"..\obj\stm32f10x_rcc.o"'
+### List of Objects: adding '"..\obj\stm32f10x_tim.o"'
+### List of Objects: adding '"..\obj\core_cm3.o"'
+### List of Objects: adding '"..\obj\system_stm32f10x.o"'
+### List of Objects: adding '"..\obj\startup_stm32f10x_hd.o"'
+### ADS-LD Command completed:
+--device DARMSTM "..\obj\main.o" "..\obj\stm32f10x_it.o" "..\obj\1602.o" "..\obj\misc.o" "..\obj\stm32f10x_exti.o" "..\obj\stm32f10x_gpio.o" "..\obj\stm32f10x_flash.o" "..\obj\stm32f10x_rcc.o" "..\obj\stm32f10x_tim.o" "..\obj\core_cm3.o" "..\obj\system_stm32f10x.o" "..\obj\startup_stm32f10x_hd.o" --strict --scatter "..\Obj\time3.sct" 
+--autoat --summary_stderr --info summarysizes --map --xref --callgraph --symbols 
+--info sizes --info totals --info unused --info veneers 
+ --list "..\List\time3.map" -o "..\Obj\time3.axf"### Preparing Environment (PrepEnvAds)
+### ADS-LD Output File: '..\Obj\time3.axf'
+### ADS-LD Command File: '..\Obj\time3.lnp'
+### Checking for dirty Components...
+### Creating CmdFile '..\Obj\time3.lnp', Handle=0x000002A8
+### Writing '.lnp' file
+### ADS-LD Command file '..\Obj\time3.lnp' is ready.
+### ADS-LD: About to start ADS-LD Thread.
+### ADS-LD: executed with 0 errors
+### Updating obj list
+### LDADS_file() completed.

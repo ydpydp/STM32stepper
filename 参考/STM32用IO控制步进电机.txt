@@ -1,0 +1,70 @@
+ /*STM32用IO口控制步进电机的简单程序   .
+
+
+
+练习IO口库函数操作。*/
+
+//相序
+uint16_t phasecw[4] ={0x2000,0x0001,0x0004,0x0008};// D-C-B-A
+uint16_t phaseccw[4]={0x0008,0x0004,0x0001,0x2000};// A-B-C-D
+
+//步进电机相关IO口初始化
+// IN4:	PC13
+// IN3:	PC0
+// IN2:	PC2
+// IN1:	PC3
+void Moto_Init(void)
+{
+	GPIO_InitTypeDef GPIO_InitStructure;
+
+	RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOC,ENABLE);			//GPIO CLOCK ENABLE
+	
+	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_13;
+	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP;	//推挽输出		
+	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;	//50MHz速率
+	GPIO_Init(GPIOC, &GPIO_InitStructure);			
+	GPIO_ResetBits(GPIOC,GPIO_Pin_13);					//输出低电平
+
+	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_0;
+	GPIO_Init(GPIOC, &GPIO_InitStructure);
+	GPIO_ResetBits(GPIOC,GPIO_Pin_0);
+
+	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_2;
+	GPIO_Init(GPIOC, &GPIO_InitStructure);
+	GPIO_ResetBits(GPIOC,GPIO_Pin_2);
+
+	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_3;
+	GPIO_Init(GPIOC, &GPIO_InitStructure);
+	GPIO_ResetBits(GPIOC,GPIO_Pin_3);
+}
+
+//电机正转
+void Motorcw(void)
+{
+	uint8_t i;
+
+	for(i=0;i<4;i++)
+  	{
+  		GPIO_Write(GPIOC,phasecw[i]);
+   		delay_ms(4);
+	}
+}
+
+//电机反转
+void Motorccw(void)
+{
+	uint8_t i;
+ 	for(i=0;i<4;i++)
+  	{
+  		GPIO_Write(GPIOC,phaseccw[i]);
+   		delay_ms(4);
+   	}
+}
+
+//点击停止
+void MotorStop(void)
+{
+ 	GPIO_Write(GPIOC,0x0000);
+}
+// 记得使能IO口时钟。  
+  

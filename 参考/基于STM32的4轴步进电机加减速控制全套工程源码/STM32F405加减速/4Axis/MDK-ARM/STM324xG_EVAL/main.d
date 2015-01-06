@@ -1,0 +1,9 @@
+.\STM324xG_EVAL\main.o: ..\main.c
+.\STM324xG_EVAL\main.o: e:\Keil\ARM\Inc\ST\STM32F4xx\stm32f4xx.h
+.\STM324xG_EVAL\main.o: e:\Keil\ARM\CMSIS\Include\core_cm4.h
+.\STM324xG_EVAL\main.o: e:\Keil\ARM\RV31\Inc\stdint.h
+.\STM324xG_EVAL\main.o: e:\Keil\ARM\CMSIS\Include\core_cmInstr.h
+.\STM324xG_EVAL\main.o: e:\Keil\ARM\CMSIS\Include\core_cmFunc.h
+.\STM324xG_EVAL\main.o: e:\Keil\ARM\CMSIS\Include\core_cm4_simd.h
+.\STM324xG_EVAL\main.o: e:\Keil\ARM\Inc\ST\STM32F4xx\system_stm32f4xx.h
+.\STM324xG_EVAL\main.o: ..\stm32f4xx_conf.h

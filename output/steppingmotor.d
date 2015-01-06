@@ -1,0 +1,17 @@
+.\output\steppingmotor.o: user\SteppingMotor.c
+.\output\steppingmotor.o: .\cmsis\stm32f10x.h
+.\output\steppingmotor.o: .\cmsis\core_cm3.h
+.\output\steppingmotor.o: C:\Keil\ARM\ARMCC\bin\..\include\stdint.h
+.\output\steppingmotor.o: .\cmsis\system_stm32f10x.h
+.\output\steppingmotor.o: .\headers\stm32f10x_conf.h
+.\output\steppingmotor.o: .\lib\inc\stm32f10x_bkp.h
+.\output\steppingmotor.o: .\cmsis\stm32f10x.h
+.\output\steppingmotor.o: .\lib\inc\stm32f10x_gpio.h
+.\output\steppingmotor.o: .\lib\inc\stm32f10x_pwr.h
+.\output\steppingmotor.o: .\lib\inc\stm32f10x_rcc.h
+.\output\steppingmotor.o: .\lib\inc\stm32f10x_rtc.h
+.\output\steppingmotor.o: .\lib\inc\stm32f10x_tim.h
+.\output\steppingmotor.o: .\lib\inc\stm32f10x_usart.h
+.\output\steppingmotor.o: .\lib\inc\stm32f10x_wwdg.h
+.\output\steppingmotor.o: .\lib\inc\misc.h
+.\output\steppingmotor.o: user\SteppingMotor.h

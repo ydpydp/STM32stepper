@@ -1,0 +1,17 @@
+<html>
+<body>
+<pre>
+<h1>礦ision Build Log</h1>
+<h2>Project:</h2>
+F:\TDDOWNLOAD\STM32四轴加减速\STM32F103加减速\4motorV2\MDK\test.uvproj
+Project File Date:  12/17/2012
+
+<h2>Output:</h2>
+Build target 'test'
+compiling main.c...
+..\User\main.c(41): warning:  #47-D: incompatible redefinition of macro "CONTROL_PORT" (declared at line 67 of "..\User\stm32f10x_conf.h")
+..\User\main.c(491): warning:  #68-D: integer conversion resulted in a change of sign
+linking...
+Program Size: Code=15804 RO-data=356 RW-data=496 ZI-data=672  
+FromELF: creating hex file...
+".\Obj\test.axf" - 0 Error(s), 2 Warning(s).

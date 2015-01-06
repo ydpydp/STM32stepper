@@ -1,0 +1,750 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+     
+    <html xmlns="http://www.w3.org/1999/xhtml">
+    
+<head>    
+<style type="text/css">
+    .tag_list
+    {
+        background: none repeat scroll 0 0 #FFFFFF;
+        border: 1px solid #D7CBC1;
+        color: #000000;
+        font-size: 12px;
+        line-height: 20px;
+        list-style: none outside none;
+        margin: 10px 2% 0 1%;
+        padding: 1px;
+    }
+    .tag_list h5
+    {
+        background: none repeat scroll 0 0 #E0DBD3;
+        color: #47381C;
+        font-size: 12px;
+        height: 24px;
+        line-height: 24px;
+        padding: 0 5px;
+        margin: 0;
+    }
+    .tag_list h5 a
+    {
+        color: #47381C;
+    }
+    .classify
+    {
+        margin: 10px 0;
+        padding: 4px 12px 8px;
+    }
+    .classify a
+    {
+        margin-right: 20px;
+        white-space: nowrap;
+    }
+</style>
+<style>
+    #popup_mask
+    {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background: #000;
+        z-index: 9999;
+        left: 0px;
+        top: 0px;
+        opacity: 0.3;
+        filter: alpha(opacity=30);
+        display: none;
+    }
+
+</style>
+
+
+
+
+    <link href="http://csdnimg.cn/comm_ask/css/ask_float_block.css" type="text/css" rel="stylesheet" />
+    <script type="text/javascript" src="http://csdnimg.cn/pubfooter/js/tracking.js" charset="utf-8"></script>  
+
+    <script type="text/javascript">
+        var protocol = window.location.protocol;
+        document.write('<script type="text/javascript" src="' + protocol + '//csdnimg.cn/pubfooter/js/repoAddr2.js?v=' + Math.random() + '"></' + 'script>');
+    </script>
+
+
+    <script id="allmobilize" charset="utf-8" src="http://a.yunshipei.com/46aae4d1e2371e4aa769798941cef698/allmobilize.min.js"></script>
+ <meta http-equiv="Cache-Control" content="no-siteapp" /><link rel="alternate" media="handheld" href="#" />
+
+    <title>stm32之keil开发环境搭建 - xiahouzuoxin
+        - 博客频道 - CSDN.NET</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="description" content="只要按照下面的一步步来，绝对能从0开始建立一个STM32工程。不仅包括工程建立过程，还有Jlink设置方法。本文使用芯片为STM32F103CB。1 下载stm32F10x的官方库http://www.st.com/web/en/catalog/tools/PF257890&#160;2 新建工程工程名设为stm32_demo，选择芯片型号为STM32F103" />
+    <script src="http://static.blog.csdn.net/scripts/jquery.js" type="text/javascript"></script>
+    <script type="text/javascript" src="http://static.blog.csdn.net/scripts/ad.js?v=1.1"></script>
+        <!--new top-->
+               <link rel="stylesheet" href="http://static.csdn.net/public/common/toolbar/css/index.css">        <!--new top-->
+
+    <link rel="Stylesheet" type="text/css" href="http://static.blog.csdn.net/skin/light_blue/css/style.css?v=1.1" />
+    <link id="RSSLink" title="RSS" type="application/rss+xml" rel="alternate" href="http://blog.csdn.net/xiahouzuoxin/rss/list" />
+    <link rel="shortcut icon" href="http://csdnimg.cn/public/favicon.ico" />
+    <link type="text/css" rel="stylesheet" href="http://static.blog.csdn.net/scripts/SyntaxHighlighter/styles/blue.css" />
+ 
+
+
+</head>
+<body>
+    
+   
+      <!--new top-->
+    <script id="toolbar-tpl-scriptId" fixed="true" prod="blog" skin="black" src="http://static.csdn.net/public/common/toolbar/js/html.js" type="text/javascript"></script>
+     <!--new top-->
+    <div id="container">
+        <div id="header">
+    <div class="header">
+        <div id="blog_title">
+            <h2>
+                <a href="http://blog.csdn.net/xiahouzuoxin">xiahouzuoxin</a></h2>
+            <h3>一个人的喜欢就是把自己对偶然间闪过的念想坚持，直到它变成一种习惯</h3>
+            <div class="clear">
+            </div>
+        </div>
+        <div class="clear">
+        </div>
+    </div>
+</div>
+<div id="navigator">
+    <div class="navigator_bg">
+    </div>
+    <div class="navigator">
+        <ul>
+                <li id="btnContents"><a href="http://blog.csdn.net/xiahouzuoxin?viewmode=contents"><span onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_mulu'])">
+                    <img src="http://static.blog.csdn.net/images/ico_list.gif">目录视图</span></a></li>
+                <li id="btnView"><a href="http://blog.csdn.net/xiahouzuoxin?viewmode=list"><span onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_zhaiyao'])">
+                    <img src="http://static.blog.csdn.net/images/ico_summary.gif">摘要视图</span></a></li>
+                <li id="btnRss"><a href="http://blog.csdn.net/xiahouzuoxin/rss/list"><span onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_RSS'])">
+                    <img src="http://static.blog.csdn.net/images/ico_rss.gif">订阅</span></a></li>                
+
+            </ul>
+    </div>
+</div>
+<script type="text/javascript">
+    var username = "xiahouzuoxin";
+    var _blogger = username;
+    var blog_address = "http://blog.csdn.net/xiahouzuoxin";
+    var static_host = "http://static.blog.csdn.net";
+    var currentUserName = "";  
+</script>
+
+        <div id="body">
+            <div id="main">
+                <div class="main">
+                        <div class="ad_class">
+<div class="notice tracking-ad" data-mod='popu_3' > 
+
+<a href="http://bbs.csdn.net/topics/390812950?page=6#post-398674162"target="_blank">
+<font color=blue>博客专家福利
+</font></a>
+&nbsp;&nbsp;&nbsp;
+
+<a href="http://blog.csdn.net/blogdevteam/article/details/41944891">
+<font color=red>2015年4月微软MVP申请</font></a>
+
+&nbsp;&nbsp;&nbsp;&nbsp;
+
+<a href="http://blog.csdn.net/blogdevteam/article/details/41079173">
+<font color=blue>10月推荐文章汇总
+</font></a>
+&nbsp;&nbsp;&nbsp;&nbsp;
+
+<a href="http://blog.csdn.net/blogdevteam/article/details/41842837">
+<font color=red>有奖征文--我亲历的京东发展史
+</font></a>
+&nbsp;&nbsp;&nbsp;&nbsp;
+
+<a href="http://hero.csdn.net/ ">
+<font color=blue>参与迷你编程马拉松赢iPhone 6
+</font></a>
+
+</div>                        </div>
+                        
+
+  
+<link href="http://static.blog.csdn.net/css/comment1.css" type="text/css" rel="stylesheet" />
+<link href="http://static.blog.csdn.net/css/style1.css" type="text/css" rel="stylesheet" />
+<script language='JavaScript' type='text/javascript' src='http://download.csdn.net/js/jquery.cookie.js'></script>
+<script type="text/javascript" src="http://csdnimg.cn/rabbit/search-service/main.js"></script>
+  <script type="text/ecmascript">
+      window.quickReplyflag = true;
+    </script>
+<div id="article_details" class="details">
+    <div class="article_title">   
+         <span class="ico ico_type_Original"></span>
+
+
+    <h1>
+        <span class="link_title"><a href="/xiahouzuoxin/article/details/9947669">
+        stm32之keil开发环境搭建
+        </a></span>
+    </h1>
+</div>
+
+    <div class="article_manage">
+        <span class="link_categories">
+        分类：
+            <a href="/xiahouzuoxin/article/category/1205536" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_fenlei']);">Cortex-M3/M4</a> 
+        </span>
+    <span class="link_postdate">2013-08-13 14:28</span>
+    <span class="link_view" title="阅读次数">4107人阅读</span>
+    <span class="link_comments" title="评论次数"><a href="#comments" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_pinglun'])">评论</a>(4)</span>
+    <span class="link_collect"><a href="javascript:void(0);" onclick="javascript:_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_shoucang']);collectArticle('stm32之keil开发环境搭建','9947669');return false;" title="收藏">收藏</a></span>
+    <span class="link_report"><a href="#report"  onclick="javascript:_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_jubao']);report(9947669,2);return false;" title="举报">举报</a></span>
+    
+</div>
+
+  
+    
+<div id="article_content" class="article_content">
+
+<ol style="word-wrap:break-word; margin:0px; padding:0px; list-style:none; font-family:宋体,Arial; line-height:26px">
+<li style="word-wrap:break-word; margin:0px; padding:0px; list-style:decimal outside">
+<pre><span style="font-family:宋体; font-size:14pt; background-color:rgb(255,255,255)">
+</span></pre>
+<pre><span style="font-family:宋体; font-size:14pt; background-color:rgb(255,255,255)">&nbsp; &nbsp; 只要按照下面的一步步来，绝对能从0开始建立一个STM32工程。不仅包括工程建立过程，还有Jlink设置方法。本文使用芯片为STM32F103CB。</span></pre>
+<h2><span style="color:red; font-size:14pt; word-wrap:break-word; font-family:宋体">1 下载</span><span style="color:red; font-size:14pt; word-wrap:break-word; font-family:'Times New Roman'">stm32F10x</span><span style="color:red; font-size:14pt; word-wrap:break-word; font-family:宋体">的官方库</span></h2>
+</li></ol>
+<p style="word-wrap:break-word; margin-top:5px; margin-bottom:5px; padding-top:0px; padding-bottom:0px; color:rgb(102,102,102); font-family:宋体,Arial; line-height:26px">
+<a target="_blank" target="_blank" href="http://www.st.com/web/en/catalog/tools/PF257890" style="word-wrap:break-word; text-decoration:none; color:rgb(25,89,155)"><span style="word-wrap:break-word; font-family:'Times New Roman'"><span style="font-size:14px">http://www.st.com/web/en/catalog/tools/PF257890</span></span></a><span style="word-wrap:break-word; font-family:'Times New Roman'"></span></p>
+<p style="word-wrap:break-word; margin-top:5px; margin-bottom:5px; padding-top:0px; padding-bottom:0px; color:rgb(102,102,102); font-family:宋体,Arial; line-height:26px">
+&nbsp;</p>
+<ol style="word-wrap:break-word; margin:0px; padding:0px; list-style:none; color:rgb(102,102,102); font-family:宋体,Arial; line-height:26px">
+<li style="word-wrap:break-word; margin:0px; padding:0px; list-style:decimal outside">
+<h2><span style="word-wrap:break-word; color:red; font-size:14pt"><span style="word-wrap:break-word"><span style="word-wrap:break-word; font-family:宋体">2 新建工程</span></span></span></h2>
+</li></ol>
+<p style="word-wrap:break-word; margin-top:5px; margin-bottom:5px; padding-top:0px; padding-bottom:0px; color:rgb(102,102,102); font-family:宋体,Arial; line-height:26px">
+<span style="word-wrap:break-word; font-size:14pt"><span style="word-wrap:break-word; font-family:宋体">工程名设为</span><span style="word-wrap:break-word; font-family:'Times New Roman'">stm32_demo</span><span style="word-wrap:break-word; font-family:宋体">，选择芯片型号为</span><span style="word-wrap:break-word; font-family:'Times New Roman'">STM32F103B</span><span style="word-wrap:break-word; font-family:宋体">，如图，</span><span style="word-wrap:break-word; font-family:'Times New Roman'"></span></span></p>
+<p style="word-wrap:break-word; margin-top:5px; margin-bottom:5px; padding-top:0px; padding-bottom:0px; color:rgb(102,102,102); font-family:宋体,Arial; line-height:26px">
+<img src="http://blog.chinaunix.net/attachment/201308/13/25984261_1376374859ggg3.png" alt="" style="word-wrap:break-word; border:0px"><span style="word-wrap:break-word; font-family:'Times New Roman'"></span></p>
+<p style="word-wrap:break-word; margin-top:5px; margin-bottom:5px; padding-top:0px; padding-bottom:0px; color:rgb(102,102,102); font-family:宋体,Arial; line-height:26px">
+<span style="word-wrap:break-word; font-size:14pt"><span style="word-wrap:break-word; font-family:宋体">因为下载的</span><span style="word-wrap:break-word; font-family:'Times New Roman'">stm32</span><span style="word-wrap:break-word; font-family:宋体">库中有启动代码，所以这里选择</span><span style="word-wrap:break-word; font-family:'Times New Roman'">&quot;</span><span style="word-wrap:break-word; font-family:宋体">否</span><span style="word-wrap:break-word; font-family:'Times New Roman'">&quot;</span><span style="word-wrap:break-word; font-family:宋体">，不拷贝启动代码。</span><span style="word-wrap:break-word; font-family:'Times New Roman'"></span></span></p>
+<p style="word-wrap:break-word; margin-top:5px; margin-bottom:5px; padding-top:0px; padding-bottom:0px; color:rgb(102,102,102); font-family:宋体,Arial; line-height:26px">
+<img src="http://blog.chinaunix.net/attachment/201308/13/25984261_1376374859NnWj.png" alt="" style="word-wrap:break-word; border:0px"><span style="word-wrap:break-word; font-family:'Times New Roman'"></span></p>
+<p style="word-wrap:break-word; margin-top:5px; margin-bottom:5px; padding-top:0px; padding-bottom:0px; color:rgb(102,102,102); font-family:宋体,Arial; line-height:26px">
+<span style="word-wrap:break-word; font-size:14pt"><span style="word-wrap:break-word; font-family:宋体">在工程文件下，新建</span><span style="word-wrap:break-word; font-family:'Times New Roman'">Startup&nbsp;</span><span style="word-wrap:break-word; font-family:宋体">、</span><span style="word-wrap:break-word; font-family:'Times New Roman'">Headers</span><span style="word-wrap:break-word; font-family:宋体">、</span><span style="word-wrap:break-word; font-family:'Times New Roman'">User</span><span style="word-wrap:break-word; font-family:宋体">、</span><span style="word-wrap:break-word; font-family:'Times New Roman'">Libraries</span><span style="word-wrap:break-word; font-family:宋体">、</span><span style="word-wrap:break-word; font-family:'Times New Roman'">CMSIS</span><span style="word-wrap:break-word; font-family:宋体">、</span><span style="word-wrap:break-word; font-family:'Times New Roman'">Lists</span><span style="word-wrap:break-word; font-family:宋体">、</span><span style="word-wrap:break-word; font-family:'Times New Roman'">Output</span><span style="word-wrap:break-word; font-family:宋体">文件夹。</span><span style="word-wrap:break-word; font-family:'Times New Roman'"></span></span></p>
+<div style="word-wrap:break-word; color:rgb(102,102,102); font-family:宋体,Arial; line-height:26px">
+<table border="0" style="word-wrap:break-word; border-collapse:collapse">
+<tbody valign="top" style="word-wrap:break-word">
+<tr style="word-wrap:break-word; background-color:rgb(230,238,213)">
+<td style="word-wrap:break-word; margin:0px; padding:0px 7px; border:1pt solid rgb(179,204,130)">
+<p style="word-wrap:break-word; margin-top:5px; margin-bottom:5px; padding-top:0px; padding-bottom:0px">
+<span style="word-wrap:break-word; font-family:宋体; font-size:10pt"><span style="word-wrap:break-word">文件夹</span></span></p>
+</td>
+<td style="word-wrap:break-word; margin:0px; padding:0px 7px; border-style:solid solid solid none; border-top-color:rgb(179,204,130); border-top-width:1pt; border-bottom-color:rgb(179,204,130); border-bottom-width:1pt; border-right-color:rgb(179,204,130); border-right-width:1pt">
+<p style="word-wrap:break-word; margin-top:5px; margin-bottom:5px; padding-top:0px; padding-bottom:0px; text-align:center">
+<span style="word-wrap:break-word; font-family:宋体; font-size:10pt"><span style="word-wrap:break-word">用途</span></span></p>
+</td>
+</tr>
+<tr style="word-wrap:break-word; background-color:rgb(205,221,172)">
+<td style="word-wrap:break-word; margin:0px; padding:0px 7px; border-style:none solid solid; border-left-color:rgb(179,204,130); border-left-width:1pt; border-bottom-color:rgb(179,204,130); border-bottom-width:1pt; border-right-color:rgb(179,204,130); border-right-width:1pt">
+<p style="word-wrap:break-word; margin-top:5px; margin-bottom:5px; padding-top:0px; padding-bottom:0px">
+<span style="word-wrap:break-word; font-family:'Times New Roman'; font-size:10pt"><span style="word-wrap:break-word">Startup</span></span></p>
+</td>
+<td style="word-wrap:break-word; margin:0px; padding:0px 7px; border-style:none solid solid none; border-bottom-color:rgb(179,204,130); border-bottom-width:1pt; border-right-color:rgb(179,204,130); border-right-width:1pt">
+<p style="word-wrap:break-word; margin-top:5px; margin-bottom:5px; padding-top:0px; padding-bottom:0px; text-align:center">
+<span style="word-wrap:break-word; font-size:10pt"><span style="word-wrap:break-word; font-family:宋体">启动文件，</span><span style="word-wrap:break-word; font-family:'Times New Roman'">Flash</span><span style="word-wrap:break-word; font-family:宋体">在</span><span style="word-wrap:break-word; font-family:'Times New Roman'">16~32Kb</span><span style="word-wrap:break-word; font-family:宋体">小容量，</span><span style="word-wrap:break-word; font-family:'Times New Roman'">64~128Kb</span><span style="word-wrap:break-word; font-family:宋体">中容量，</span><span style="word-wrap:break-word; font-family:'Times New Roman'">256~512Kb</span><span style="word-wrap:break-word; font-family:宋体">大容量</span></span></p>
+</td>
+</tr>
+<tr style="word-wrap:break-word; background-color:rgb(230,238,213)">
+<td style="word-wrap:break-word; margin:0px; padding:0px 7px; border-style:none solid solid; border-left-color:rgb(179,204,130); border-left-width:1pt; border-bottom-color:rgb(179,204,130); border-bottom-width:1pt; border-right-color:rgb(179,204,130); border-right-width:1pt">
+<p style="word-wrap:break-word; margin-top:5px; margin-bottom:5px; padding-top:0px; padding-bottom:0px">
+<span style="word-wrap:break-word; font-family:'Times New Roman'; font-size:10pt"><span style="word-wrap:break-word">CMSIS</span></span></p>
+</td>
+<td style="word-wrap:break-word; margin:0px; padding:0px 7px; border-style:none solid solid none; border-bottom-color:rgb(179,204,130); border-bottom-width:1pt; border-right-color:rgb(179,204,130); border-right-width:1pt">
+<p style="word-wrap:break-word; margin-top:5px; margin-bottom:5px; padding-top:0px; padding-bottom:0px; text-align:center">
+<span style="word-wrap:break-word; font-size:10pt"><span style="word-wrap:break-word; font-family:'Times New Roman'">Cortex</span><span style="word-wrap:break-word; font-family:宋体">微控制器软件接口标准文件，该目录下文件适用所有</span><span style="word-wrap:break-word; font-family:'Times New Roman'">Cortex</span><span style="word-wrap:break-word; font-family:宋体">系列</span></span></p>
+</td>
+</tr>
+<tr style="word-wrap:break-word; background-color:rgb(205,221,172)">
+<td style="word-wrap:break-word; margin:0px; padding:0px 7px; border-style:none solid solid; border-left-color:rgb(179,204,130); border-left-width:1pt; border-bottom-color:rgb(179,204,130); border-bottom-width:1pt; border-right-color:rgb(179,204,130); border-right-width:1pt">
+<p style="word-wrap:break-word; margin-top:5px; margin-bottom:5px; padding-top:0px; padding-bottom:0px">
+<span style="word-wrap:break-word; font-family:'Times New Roman'; font-size:10pt"><span style="word-wrap:break-word">Libraries</span></span></p>
+</td>
+<td style="word-wrap:break-word; margin:0px; padding:0px 7px; border-style:none solid solid none; border-bottom-color:rgb(179,204,130); border-bottom-width:1pt; border-right-color:rgb(179,204,130); border-right-width:1pt">
+<p style="word-wrap:break-word; margin-top:5px; margin-bottom:5px; padding-top:0px; padding-bottom:0px; text-align:center">
+<span style="word-wrap:break-word; font-size:10pt"><span style="word-wrap:break-word; font-family:宋体">存放</span><span style="word-wrap:break-word; font-family:'Times New Roman'">stm32</span><span style="word-wrap:break-word; font-family:宋体">的驱动库文件</span></span></p>
+</td>
+</tr>
+<tr style="word-wrap:break-word; background-color:rgb(230,238,213)">
+<td style="word-wrap:break-word; margin:0px; padding:0px 7px; border-style:none solid solid; border-left-color:rgb(179,204,130); border-left-width:1pt; border-bottom-color:rgb(179,204,130); border-bottom-width:1pt; border-right-color:rgb(179,204,130); border-right-width:1pt">
+<p style="word-wrap:break-word; margin-top:5px; margin-bottom:5px; padding-top:0px; padding-bottom:0px">
+<span style="word-wrap:break-word; font-family:'Times New Roman'; font-size:10pt"><span style="word-wrap:break-word">Headers</span></span></p>
+</td>
+<td style="word-wrap:break-word; margin:0px; padding:0px 7px; border-style:none solid solid none; border-bottom-color:rgb(179,204,130); border-bottom-width:1pt; border-right-color:rgb(179,204,130); border-right-width:1pt">
+<p style="word-wrap:break-word; margin-top:5px; margin-bottom:5px; padding-top:0px; padding-bottom:0px; text-align:center">
+<span style="word-wrap:break-word; font-family:宋体; font-size:10pt">自定义的全局头文件</span></p>
+</td>
+</tr>
+<tr style="word-wrap:break-word; background-color:rgb(205,221,172)">
+<td style="word-wrap:break-word; margin:0px; padding:0px 7px; border-style:none solid solid; border-left-color:rgb(179,204,130); border-left-width:1pt; border-bottom-color:rgb(179,204,130); border-bottom-width:1pt; border-right-color:rgb(179,204,130); border-right-width:1pt">
+<p style="word-wrap:break-word; margin-top:5px; margin-bottom:5px; padding-top:0px; padding-bottom:0px">
+<span style="word-wrap:break-word; font-family:'Times New Roman'; font-size:10pt"><span style="word-wrap:break-word">User</span></span></p>
+</td>
+<td style="word-wrap:break-word; margin:0px; padding:0px 7px; border-style:none solid solid none; border-bottom-color:rgb(179,204,130); border-bottom-width:1pt; border-right-color:rgb(179,204,130); border-right-width:1pt">
+<p style="word-wrap:break-word; margin-top:5px; margin-bottom:5px; padding-top:0px; padding-bottom:0px; text-align:center">
+<span style="word-wrap:break-word; font-size:10pt"><span style="word-wrap:break-word; font-family:宋体">用户文件，我们把</span><span style="word-wrap:break-word; font-family:'Times New Roman'">main.c</span><span style="word-wrap:break-word; font-family:宋体">放在该目录下</span></span></p>
+</td>
+</tr>
+<tr style="word-wrap:break-word; background-color:rgb(230,238,213)">
+<td style="word-wrap:break-word; margin:0px; padding:0px 7px; border-style:none solid solid; border-left-color:rgb(179,204,130); border-left-width:1pt; border-bottom-color:rgb(179,204,130); border-bottom-width:1pt; border-right-color:rgb(179,204,130); border-right-width:1pt">
+<p style="word-wrap:break-word; margin-top:5px; margin-bottom:5px; padding-top:0px; padding-bottom:0px">
+<span style="word-wrap:break-word; font-family:'Times New Roman'; font-size:10pt"><span style="word-wrap:break-word">Lists</span></span></p>
+</td>
+<td style="word-wrap:break-word; margin:0px; padding:0px 7px; border-style:none solid solid none; border-bottom-color:rgb(179,204,130); border-bottom-width:1pt; border-right-color:rgb(179,204,130); border-right-width:1pt">
+<p style="word-wrap:break-word; margin-top:5px; margin-bottom:5px; padding-top:0px; padding-bottom:0px; text-align:center">
+<span style="word-wrap:break-word; font-family:宋体; font-size:10pt">编译过程中产生的文件</span></p>
+</td>
+</tr>
+<tr style="word-wrap:break-word; background-color:rgb(205,221,172)">
+<td style="word-wrap:break-word; margin:0px; padding:0px 7px; border-style:none solid solid; border-left-color:rgb(179,204,130); border-left-width:1pt; border-bottom-color:rgb(179,204,130); border-bottom-width:1pt; border-right-color:rgb(179,204,130); border-right-width:1pt">
+<p style="word-wrap:break-word; margin-top:5px; margin-bottom:5px; padding-top:0px; padding-bottom:0px">
+<span style="word-wrap:break-word; font-family:'Times New Roman'; font-size:10pt"><span style="word-wrap:break-word">Output</span></span></p>
+</td>
+<td style="word-wrap:break-word; margin:0px; padding:0px 7px; border-style:none solid solid none; border-bottom-color:rgb(179,204,130); border-bottom-width:1pt; border-right-color:rgb(179,204,130); border-right-width:1pt">
+<p style="word-wrap:break-word; margin-top:5px; margin-bottom:5px; padding-top:0px; padding-bottom:0px; text-align:center">
+<span style="word-wrap:break-word; font-size:10pt"><span style="word-wrap:break-word; font-family:宋体">编译后输出文件，</span><span style="word-wrap:break-word; font-family:'Times New Roman'">hex/bin</span><span style="word-wrap:break-word; font-family:宋体">等可执行属性的文件将保存在该目录下</span></span></p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p style="word-wrap:break-word; margin-top:5px; margin-bottom:5px; padding-top:0px; padding-bottom:0px; color:rgb(102,102,102); font-family:宋体,Arial; line-height:26px">
+<span style="word-wrap:break-word; font-size:14pt"><span style="word-wrap:break-word; font-family:宋体">至此，</span><span style="word-wrap:break-word; font-family:'Times New Roman'">stm32</span><span style="word-wrap:break-word; font-family:宋体">的工程文件结构如下</span><span style="word-wrap:break-word; font-family:'Times New Roman'"></span></span></p>
+<p style="word-wrap:break-word; margin-top:5px; margin-bottom:5px; padding-top:0px; padding-bottom:0px; color:rgb(102,102,102); font-family:宋体,Arial; line-height:26px">
+<img src="http://blog.chinaunix.net/attachment/201308/13/25984261_1376374860c89Y.png" alt="" style="word-wrap:break-word; border:0px"><span style="word-wrap:break-word; font-family:'Times New Roman'"></span></p>
+<p style="word-wrap:break-word; margin-top:5px; margin-bottom:5px; padding-top:0px; padding-bottom:0px; color:rgb(102,102,102); font-family:宋体,Arial; line-height:26px">
+&nbsp;</p>
+<ol style="word-wrap:break-word; margin:0px; padding:0px; list-style:none; color:rgb(102,102,102); font-family:宋体,Arial; line-height:26px">
+<li style="word-wrap:break-word; margin:0px; padding:0px; list-style:decimal outside">
+<h2><span style="word-wrap:break-word; color:red; font-size:14pt"><span style="word-wrap:break-word"><span style="word-wrap:break-word; font-family:宋体">3 库文件拷贝</span></span></span></h2>
+</li></ol>
+<p style="word-wrap:break-word; margin-top:5px; margin-bottom:5px; padding-top:0px; padding-bottom:0px; color:rgb(102,102,102); font-family:宋体,Arial; line-height:26px">
+<span style="word-wrap:break-word; font-size:14pt"><span style="word-wrap:break-word; font-family:宋体">把下载</span><span style="word-wrap:break-word; font-family:'Times New Roman'">stm32</span><span style="word-wrap:break-word; font-family:宋体">库中文件拷贝到新建工程中</span><span style="word-wrap:break-word; font-family:'Times New Roman'"></span></span></p>
+<div style="word-wrap:break-word; color:rgb(102,102,102); font-family:宋体,Arial; line-height:26px">
+<table border="2" style="word-wrap:break-word; border-collapse:collapse" bordercolor="#000080">
+<tbody valign="top" style="word-wrap:break-word">
+<tr style="word-wrap:break-word; background-color:rgb(230,238,213)">
+<td style="word-wrap:break-word; border:1pt solid #0000FF; ; line-height:100%" bordercolor="#008000">
+<p style="word-wrap:break-word; margin-top:5px; margin-bottom:5px; padding-top:0px; padding-bottom:0px; text-align:center">
+stm32F10x的官方库</p>
+</td>
+<td style="border-right:1pt solid rgb(179,204,130); border-top:1pt solid rgb(179,204,130); border-bottom:1pt solid rgb(179,204,130); word-wrap:break-word; line-height:100%; border-left-style:none">
+<p style="word-wrap:break-word; margin-top:5px; margin-bottom:5px; padding-top:0px; padding-bottom:0px; text-align:center">
+工程</p>
+</td>
+</tr>
+<tr style="word-wrap:break-word; background-color:rgb(205,221,172)">
+<td style="word-wrap:break-word; border-left-width:1pt; border-bottom-width:1pt; border-right-width:1pt; line-height:100%; border-left-style:solid; border-right-style:solid; border-top-style:none; border-bottom-style:solid" bordercolor="#0000FF">
+<p style="word-wrap:break-word; margin-top:5px; margin-bottom:5px; padding-top:0px; padding-bottom:0px">
+Libraries\STM32F10x_StdPeriph_Driver\inc&nbsp;库头文件</p>
+<p style="word-wrap:break-word; margin-top:5px; margin-bottom:5px; padding-top:0px; padding-bottom:0px">
+Libraries\STM32F10x_StdPeriph_Driver\src&nbsp;库源文件</p>
+</td>
+<td valign="middle" style="border-right:1pt solid #0000FF; border-bottom:1pt solid #0000FF; word-wrap:break-word; line-height:100%; border-left-style:none; border-left-color:#0000FF; border-top-style:none; border-top-color:#0000FF">
+<p style="word-wrap:break-word; margin-top:5px; margin-bottom:5px; padding-top:0px; padding-bottom:0px; text-align:center">
+Libraries</p>
+</td>
+</tr>
+<tr style="word-wrap:break-word; background-color:rgb(230,238,213)">
+<td style="border-left:1pt solid #0000FF; border-right:1pt solid #0000FF; border-bottom:1pt solid #0000FF; word-wrap:break-word; line-height:100%; border-top-style:none; border-top-color:#0000FF" bordercolor="#008000">
+<p style="word-wrap:break-word; margin-top:5px; margin-bottom:5px; padding-top:0px; padding-bottom:0px">
+Project\STM32F10x_StdPeriph_Template\main.c</p>
+<p style="word-wrap:break-word; margin-top:5px; margin-bottom:5px; padding-top:0px; padding-bottom:0px">
+Project\STM32F10x_StdPeriph_Template\stm32f10x_it.c&nbsp;中断函数文件</p>
+</td>
+<td valign="middle" style="border-right:1pt solid #0000FF; border-bottom:1pt solid #0000FF; word-wrap:break-word; line-height:100%; border-left-style:none; border-left-color:#0000FF; border-top-style:none; border-top-color:#0000FF">
+<p style="word-wrap:break-word; margin-top:5px; margin-bottom:5px; padding-top:0px; padding-bottom:0px; text-align:center">
+User</p>
+</td>
+</tr>
+<tr style="word-wrap:break-word; background-color:rgb(205,221,172)">
+<td style="border-left:1pt solid #0000FF; border-right:1pt solid #0000FF; border-bottom:1pt solid #0000FF; word-wrap:break-word; line-height:100%; border-top-style:none; border-top-color:#0000FF" bordercolor="#008000">
+<p style="word-wrap:break-word; margin-top:5px; margin-bottom:5px; padding-top:0px; padding-bottom:0px">
+Project\STM32F10x_StdPeriph_Template\stm32f10x_it.h&nbsp;中断函数头文件</p>
+<p style="word-wrap:break-word; margin-top:5px; margin-bottom:5px; padding-top:0px; padding-bottom:0px">
+Project\STM32F10x_StdPeriph_Template\stm32f10x_conf.h&nbsp;配置文件</p>
+</td>
+<td valign="middle" style="border-right:1pt solid #0000FF; border-bottom:1pt solid #0000FF; word-wrap:break-word; line-height:100%; border-left-style:none; border-left-color:#0000FF; border-top-style:none; border-top-color:#0000FF">
+<p style="word-wrap:break-word; margin-top:5px; margin-bottom:5px; padding-top:0px; padding-bottom:0px; text-align:center">
+Headers</p>
+</td>
+</tr>
+<tr style="word-wrap:break-word; background-color:rgb(230,238,213)">
+<td style="border-left:1pt solid #0000FF; border-right:1pt solid #0000FF; border-bottom:1pt solid #0000FF; word-wrap:break-word; line-height:100%; border-top-style:none; border-top-color:#0000FF" bordercolor="#008000">
+<p style="word-wrap:break-word; margin-top:5px; margin-bottom:5px; padding-top:0px; padding-bottom:0px">
+Libraries\CMSIS\CM3\DeviceSupport\ST\STM32F10x\startup\arm\*&nbsp;启动文件</p>
+</td>
+<td valign="middle" style="border-right:1pt solid #0000FF; border-bottom:1pt solid #0000FF; word-wrap:break-word; line-height:100%; border-left-style:none; border-left-color:#0000FF; border-top-style:none; border-top-color:#0000FF">
+<p style="word-wrap:break-word; margin-top:5px; margin-bottom:5px; padding-top:0px; padding-bottom:0px; text-align:center">
+Startup</p>
+</td>
+</tr>
+<tr style="word-wrap:break-word; background-color:rgb(205,221,172)">
+<td style="border-left:1pt solid #0000FF; border-right:1pt solid #0000FF; border-bottom:1pt solid #0000FF; word-wrap:break-word; line-height:100%; border-top-style:none; border-top-color:#0000FF" bordercolor="#008000">
+<p style="word-wrap:break-word; margin-top:5px; margin-bottom:5px; padding-top:0px; padding-bottom:0px">
+Libraries\CMSIS\CM3\DeviceSupport\ST\STM32F10x\stm32f10x.h</p>
+<p style="word-wrap:break-word; margin-top:5px; margin-bottom:5px; padding-top:0px; padding-bottom:0px">
+Libraries\CMSIS\CM3\DeviceSupport\ST\STM32F10x\ system_stm32f10x.c</p>
+<p style="word-wrap:break-word; margin-top:5px; margin-bottom:5px; padding-top:0px; padding-bottom:0px">
+Libraries\CMSIS\CM3\DeviceSupport\ST\STM32F10x\system_stm32f10x.h</p>
+</td>
+<td valign="middle" style="border-right:1pt solid #0000FF; border-bottom:1pt solid #0000FF; word-wrap:break-word; line-height:100%; border-left-style:none; border-left-color:#0000FF; border-top-style:none; border-top-color:#0000FF">
+<p style="word-wrap:break-word; margin-top:5px; margin-bottom:5px; padding-top:0px; padding-bottom:0px; text-align:center">
+CMSIS</p>
+</td>
+</tr>
+<tr style="word-wrap:break-word; background-color:rgb(230,238,213)">
+<td style="border-left:1pt solid #0000FF; border-right:1pt solid #0000FF; border-bottom:1pt solid #0000FF; word-wrap:break-word; line-height:100%; border-top-style:none; border-top-color:#0000FF" bordercolor="#008000">
+<p style="word-wrap:break-word; margin-top:5px; margin-bottom:5px; padding-top:0px; padding-bottom:0px">
+Libraries\CMSIS\CM3\CoreSupport\core_cm3.c&nbsp;Cortex-M3系统文件</p>
+<p style="word-wrap:break-word; margin-top:5px; margin-bottom:5px; padding-top:0px; padding-bottom:0px">
+Libraries\CMSIS\CM3\CoreSupport\core_cm3.h</p>
+</td>
+<td valign="middle" style="border-right:1pt solid rgb(179,204,130); border-bottom:1pt solid rgb(179,204,130); word-wrap:break-word; line-height:100%; border-left-style:none; border-top-style:none">
+<p style="word-wrap:break-word; margin-top:5px; margin-bottom:5px; padding-top:0px; padding-bottom:0px; text-align:center">
+CMSIS</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p style="word-wrap:break-word; margin-top:5px; margin-bottom:5px; padding-top:0px; padding-bottom:0px; color:rgb(102,102,102); font-family:宋体,Arial; line-height:26px">
+<span style="word-wrap:break-word; font-size:14pt"><span style="word-wrap:break-word; font-family:宋体">文件拷贝完成后的工程文件目录结构如下：</span><span style="word-wrap:break-word; font-family:'Times New Roman'"></span></span></p>
+<p style="word-wrap:break-word; margin-top:5px; margin-bottom:5px; padding-top:0px; padding-bottom:0px; color:rgb(102,102,102); font-family:宋体,Arial; line-height:26px">
+<img src="http://blog.chinaunix.net/attachment/201308/13/25984261_1376374861SZs3.png" alt="" style="word-wrap:break-word; border:0px"><span style="word-wrap:break-word; font-family:'Times New Roman'"></span></p>
+<p style="word-wrap:break-word; margin-top:5px; margin-bottom:5px; padding-top:0px; padding-bottom:0px; color:rgb(102,102,102); font-family:宋体,Arial; line-height:26px">
+&nbsp;</p>
+<ol style="word-wrap:break-word; margin:0px; padding:0px; list-style:none; color:rgb(102,102,102); font-family:宋体,Arial; line-height:26px">
+<li style="word-wrap:break-word; margin:0px; padding:0px; list-style:decimal outside">
+<h2><span style="word-wrap:break-word; color:red; font-size:14pt"><span style="word-wrap:break-word"><span style="word-wrap:break-word; font-family:宋体">4 将文件添加到工程</span></span></span></h2>
+</li></ol>
+<p style="word-wrap:break-word; margin-top:5px; margin-bottom:5px; padding-top:0px; padding-bottom:0px; color:rgb(102,102,102); font-family:宋体,Arial; line-height:26px">
+<span style="word-wrap:break-word; font-size:14pt"><span style="word-wrap:break-word; font-family:宋体">点击</span><span style="word-wrap:break-word; font-family:'Times New Roman'">Keil</span><span style="word-wrap:break-word; font-family:宋体">右上角的工程分组按钮，在</span><span style="word-wrap:break-word; font-family:'Times New Roman'">Group</span><span style="word-wrap:break-word; font-family:宋体">一列添加分组，分组和工程的文件名可以一一对应。</span><span style="word-wrap:break-word; font-family:'Times New Roman'"></span></span></p>
+<p style="word-wrap:break-word; margin-top:5px; margin-bottom:5px; padding-top:0px; padding-bottom:0px; color:rgb(102,102,102); font-family:宋体,Arial; line-height:26px">
+<img src="http://blog.chinaunix.net/attachment/201308/13/25984261_1376374862yCyf.png" alt="" style="word-wrap:break-word; border:0px"><span style="word-wrap:break-word; font-family:'Times New Roman'"></span></p>
+<p style="word-wrap:break-word; margin-top:5px; margin-bottom:5px; padding-top:0px; padding-bottom:0px; color:rgb(102,102,102); font-family:宋体,Arial; line-height:26px">
+&nbsp;</p>
+<p style="word-wrap:break-word; margin-top:5px; margin-bottom:5px; padding-top:0px; padding-bottom:0px; color:rgb(102,102,102); font-family:宋体,Arial; line-height:26px">
+<img src="http://blog.chinaunix.net/attachment/201308/13/25984261_1376374862h8Y0.png" alt="" style="word-wrap:break-word; border:0px"><span style="word-wrap:break-word; font-family:'Times New Roman'"></span></p>
+<p style="word-wrap:break-word; margin-top:5px; margin-bottom:5px; padding-top:0px; padding-bottom:0px; color:rgb(102,102,102); font-family:宋体,Arial; line-height:26px">
+&nbsp;</p>
+<p style="word-wrap:break-word; margin-top:5px; margin-bottom:5px; padding-top:0px; padding-bottom:0px; color:rgb(102,102,102); font-family:宋体,Arial; line-height:26px">
+<img src="http://blog.chinaunix.net/attachment/201308/13/25984261_1376374863IETA.png" alt="" style="word-wrap:break-word; border:0px"><span style="word-wrap:break-word; font-family:'Times New Roman'"></span></p>
+<p style="word-wrap:break-word; margin-top:5px; margin-bottom:5px; padding-top:0px; padding-bottom:0px; color:rgb(102,102,102); font-family:宋体,Arial; line-height:26px">
+&nbsp;</p>
+<p style="word-wrap:break-word; margin-top:5px; margin-bottom:5px; padding-top:0px; padding-bottom:0px; color:rgb(102,102,102); font-family:宋体,Arial; line-height:26px">
+<img src="http://blog.chinaunix.net/attachment/201308/13/25984261_1376374863d11Z.png" alt="" style="word-wrap:break-word; border:0px"><span style="word-wrap:break-word; font-family:'Times New Roman'"></span></p>
+<p style="word-wrap:break-word; margin-top:5px; margin-bottom:5px; padding-top:0px; padding-bottom:0px; color:rgb(102,102,102); font-family:宋体,Arial; line-height:26px">
+<img src="http://blog.chinaunix.net/attachment/201308/13/25984261_1376374864Kq4B.png" alt="" style="word-wrap:break-word; border:0px"><span style="word-wrap:break-word; font-family:'Times New Roman'"></span></p>
+<p style="word-wrap:break-word; margin-top:5px; margin-bottom:5px; padding-top:0px; padding-bottom:0px; color:rgb(102,102,102); font-family:宋体,Arial; line-height:26px">
+<br>
+</p>
+<ol style="word-wrap:break-word; margin:0px; padding:0px; list-style:none; color:rgb(102,102,102); font-family:宋体,Arial; line-height:26px">
+<li style="word-wrap:break-word; margin:0px; padding:0px; list-style:decimal outside">
+<h2><span style="word-wrap:break-word; color:red; font-size:14pt"><span style="word-wrap:break-word"><span style="word-wrap:break-word; font-family:宋体">5 工程配置</span></span></span></h2>
+</li></ol>
+<p style="word-wrap:break-word; margin-top:5px; margin-bottom:5px; padding-top:0px; padding-bottom:0px; color:rgb(102,102,102); font-family:宋体,Arial; line-height:26px">
+<span style="word-wrap:break-word; font-size:14pt"><span style="word-wrap:break-word; font-family:宋体">点击右上角的工程配置按钮，弹出对话框，有多个选项卡，按照下面截图逐一配置。</span><span style="word-wrap:break-word; font-family:'Times New Roman'"></span></span></p>
+<p style="word-wrap:break-word; margin-top:5px; margin-bottom:5px; padding-top:0px; padding-bottom:0px; color:rgb(102,102,102); font-family:宋体,Arial; line-height:26px">
+<img src="http://blog.chinaunix.net/attachment/201308/13/25984261_13763748653dZ5.jpg" alt="" style="word-wrap:break-word; border:0px"><span style="word-wrap:break-word; font-family:'Times New Roman'"></span></p>
+<p style="word-wrap:break-word; margin-top:5px; margin-bottom:5px; padding-top:0px; padding-bottom:0px; color:rgb(102,102,102); font-family:宋体,Arial; line-height:26px">
+<img src="http://blog.chinaunix.net/attachment/201308/13/25984261_1376374865ZhhI.jpg" alt="" style="word-wrap:break-word; border:0px"><span style="word-wrap:break-word; font-family:'Times New Roman'"></span></p>
+<p style="word-wrap:break-word; margin-top:5px; margin-bottom:5px; padding-top:0px; padding-bottom:0px; color:rgb(102,102,102); font-family:宋体,Arial; line-height:26px">
+<img src="http://blog.chinaunix.net/attachment/201308/13/25984261_13763748661Vit.png" alt="" style="word-wrap:break-word; border:0px"><span style="word-wrap:break-word; font-family:'Times New Roman'"></span></p>
+<p style="word-wrap:break-word; margin-top:5px; margin-bottom:5px; padding-top:0px; padding-bottom:0px; color:rgb(102,102,102); font-family:宋体,Arial; line-height:26px">
+<img src="http://blog.chinaunix.net/attachment/201308/13/25984261_1376374867WGMW.jpg" alt="" style="word-wrap:break-word; border:0px"></p>
+<p style="word-wrap:break-word; margin-top:5px; margin-bottom:5px; padding-top:0px; padding-bottom:0px; color:rgb(102,102,102); font-family:宋体,Arial; line-height:26px">
+<br>
+</p>
+<ol style="word-wrap:break-word; margin:0px; padding:0px; list-style:none; color:rgb(102,102,102); font-family:宋体,Arial; line-height:26px">
+<li style="word-wrap:break-word; margin:0px; padding:0px; list-style:decimal outside">
+<h2><span style="word-wrap:break-word; color:red; font-size:14pt"><span style="word-wrap:break-word"><span style="word-wrap:break-word; font-family:宋体">6 编译链接</span></span></span></h2>
+</li></ol>
+<p style="word-wrap:break-word; margin-top:5px; margin-bottom:5px; padding-top:0px; padding-bottom:0px; color:rgb(102,102,102); font-family:宋体,Arial; line-height:26px">
+<span style="word-wrap:break-word; font-size:14pt"><span style="word-wrap:break-word; font-family:宋体">原来的</span><span style="word-wrap:break-word; font-family:'Times New Roman'">main.c</span><span style="word-wrap:break-word; font-family:宋体">从库文件中拷贝过来的，把其中的内容都删除，添加最简单的</span><span style="word-wrap:break-word; font-family:'Times New Roman'">main</span><span style="word-wrap:break-word; font-family:宋体">函数：</span><span style="word-wrap:break-word; font-family:'Times New Roman'"></span></span></p>
+<p style="word-wrap:break-word; margin-top:5px; margin-bottom:5px; padding-top:0px; padding-bottom:0px; color:rgb(102,102,102); font-family:宋体,Arial; line-height:26px">
+</p>
+<pre name="code" class="cpp">#include &quot;stm32f10x.h&quot;
+int main(void)
+{
+    while(1) {
+ 
+    }
+}</pre>
+<p></p>
+<p style="word-wrap:break-word; margin-top:5px; margin-bottom:5px; padding-top:0px; padding-bottom:0px; color:rgb(102,102,102); font-family:宋体,Arial; line-height:26px">
+<span style="word-wrap:break-word; font-size:14pt"><span style="word-wrap:break-word; font-family:宋体">修改配置文件</span><span style="word-wrap:break-word; font-family:'Times New Roman'">stm32f10x_conf.h</span><span style="word-wrap:break-word; font-family:宋体">，通过注释添加或取消注释删除需要的功能模块，这里根据自己需要配置。</span><span style="word-wrap:break-word; font-family:'Times New Roman'"></span></span></p>
+<p style="word-wrap:break-word; margin-top:5px; margin-bottom:5px; padding-top:0px; padding-bottom:0px; color:rgb(102,102,102); font-family:宋体,Arial; line-height:26px">
+<img src="http://blog.chinaunix.net/attachment/201308/13/25984261_13763748683g8q.png" alt="" style="word-wrap:break-word; border:0px"><span style="word-wrap:break-word; font-family:'Times New Roman'"></span></p>
+<p style="word-wrap:break-word; margin-top:5px; margin-bottom:5px; padding-top:0px; padding-bottom:0px; color:rgb(102,102,102); font-family:宋体,Arial; line-height:26px">
+<span style="word-wrap:break-word; font-size:14pt"><span style="word-wrap:break-word; font-family:宋体">编译</span><span style="word-wrap:break-word; font-family:'Times New Roman'"></span></span></p>
+<p style="word-wrap:break-word; margin-top:5px; margin-bottom:5px; padding-top:0px; padding-bottom:0px; color:rgb(102,102,102); font-family:宋体,Arial; line-height:26px">
+<img src="http://blog.chinaunix.net/attachment/201308/13/25984261_1376374869XhTB.jpg" alt="" style="word-wrap:break-word; border:0px"><span style="word-wrap:break-word; font-family:'Times New Roman'"></span></p>
+<p style="word-wrap:break-word; margin-top:5px; margin-bottom:5px; padding-top:0px; padding-bottom:0px; color:rgb(102,102,102); font-family:宋体,Arial; line-height:26px">
+&nbsp;</p>
+<ol style="word-wrap:break-word; margin:0px; padding:0px; list-style:none; color:rgb(102,102,102); font-family:宋体,Arial; line-height:26px">
+<li style="word-wrap:break-word; margin:0px; padding:0px; list-style:decimal outside">
+<h2><span style="word-wrap:break-word; color:red; font-size:14pt"><span style="word-wrap:break-word"><span style="word-wrap:break-word; font-family:'Times New Roman'">7 Jlink</span><span style="word-wrap:break-word; font-family:宋体">调试配置</span></span></span></h2>
+</li></ol>
+<p style="word-wrap:break-word; margin-top:5px; margin-bottom:5px; padding-top:0px; padding-bottom:0px; color:rgb(102,102,102); font-family:宋体,Arial; line-height:26px">
+<span style="word-wrap:break-word; font-size:14pt"><span style="word-wrap:break-word; font-family:宋体">接上</span><span style="word-wrap:break-word; font-family:'Times New Roman'">Jlink</span><span style="word-wrap:break-word; font-family:宋体">及开发板，</span><span style="word-wrap:break-word; font-family:'Times New Roman'"></span></span></p>
+<p style="word-wrap:break-word; margin-top:5px; margin-bottom:5px; padding-top:0px; padding-bottom:0px; color:rgb(102,102,102); font-family:宋体,Arial; line-height:26px">
+<img src="http://blog.chinaunix.net/attachment/201308/13/25984261_1376374869SSUi.jpg" alt="" style="word-wrap:break-word; border:0px"><span style="word-wrap:break-word; font-family:'Times New Roman'"></span></p>
+<p style="word-wrap:break-word; margin-top:5px; margin-bottom:5px; padding-top:0px; padding-bottom:0px; color:rgb(102,102,102); font-family:宋体,Arial; line-height:26px">
+<img src="http://blog.chinaunix.net/attachment/201308/13/25984261_1376374870txqi.jpg" alt="" style="word-wrap:break-word; border:0px"><span style="word-wrap:break-word; font-family:'Times New Roman'"></span></p>
+<p style="word-wrap:break-word; margin-top:5px; margin-bottom:5px; padding-top:0px; padding-bottom:0px; color:rgb(102,102,102); font-family:宋体,Arial; line-height:26px">
+<img src="http://blog.chinaunix.net/attachment/201308/13/25984261_1376374871slg7.png" alt="" style="word-wrap:break-word; border:0px"><span style="word-wrap:break-word; font-family:'Times New Roman'"></span></p>
+<p style="word-wrap:break-word; margin-top:5px; margin-bottom:5px; padding-top:0px; padding-bottom:0px; color:rgb(102,102,102); font-family:宋体,Arial; line-height:26px">
+<img src="http://blog.chinaunix.net/attachment/201308/13/25984261_137637487282pK.jpg" alt="" style="word-wrap:break-word; border:0px"><span style="word-wrap:break-word; font-family:'Times New Roman'"></span></p>
+<p style="word-wrap:break-word; margin-top:5px; margin-bottom:5px; padding-top:0px; padding-bottom:0px; color:rgb(102,102,102); font-family:宋体,Arial; line-height:26px">
+<span style="word-wrap:break-word; font-size:14pt"><span style="word-wrap:break-word; font-family:宋体">至此，</span><span style="word-wrap:break-word; font-family:'Times New Roman'">STM32</span><span style="word-wrap:break-word; font-family:宋体">的工程搭建和</span><span style="word-wrap:break-word; font-family:'Times New Roman'">Jlink</span><span style="word-wrap:break-word; font-family:宋体">调试配置都设置好了。为了方便，在工程成中添加了</span><span style="word-wrap:break-word; font-family:'Times New Roman'">includes.h</span><span style="word-wrap:break-word; font-family:宋体">、</span><span style="word-wrap:break-word; font-family:'Times New Roman'">types.h</span><span style="word-wrap:break-word; font-family:宋体">、</span><span style="word-wrap:break-word; font-family:'Times New Roman'">gpio_bits.h</span><span style="word-wrap:break-word; font-family:宋体">等提供基本功能。</span><span style="word-wrap:break-word; font-family:'Times New Roman'"></span></span></p>
+<ol style="word-wrap:break-word; margin:0px; padding:0px; list-style:none; color:rgb(102,102,102); font-family:宋体,Arial; line-height:26px">
+<li style="word-wrap:break-word; margin:0px; padding:0px; list-style:decimal outside">
+<h2><span style="word-wrap:break-word; color:red; font-size:14pt"><span style="word-wrap:break-word"><span style="word-wrap:break-word; font-family:宋体">8 测试程序——</span><span style="word-wrap:break-word; font-family:'Times New Roman'">LED</span><span style="word-wrap:break-word; font-family:宋体">流水灯程序</span></span></span></h2>
+</li></ol>
+<p style="word-wrap:break-word; margin-top:5px; margin-bottom:5px; padding-top:0px; padding-bottom:0px; color:rgb(102,102,102); font-family:宋体,Arial; line-height:26px">
+<span style="word-wrap:break-word; font-size:14pt"><span style="word-wrap:break-word; font-family:宋体">在工程文件目录下新建</span><span style="word-wrap:break-word; font-family:'Times New Roman'">Drivers</span><span style="word-wrap:break-word; font-family:宋体">与</span><span style="word-wrap:break-word; font-family:'Times New Roman'">Devices</span><span style="word-wrap:break-word; font-family:宋体">文件夹，</span><span style="word-wrap:break-word; font-family:'Times New Roman'"></span></span></p>
+<div style="word-wrap:break-word; color:rgb(102,102,102); font-family:宋体,Arial; line-height:26px">
+<table border="0" style="word-wrap:break-word; border-collapse:collapse">
+<tbody valign="top" style="word-wrap:break-word">
+<tr style="word-wrap:break-word; height:39px; background-color:rgb(230,238,213)">
+<td style="word-wrap:break-word; margin:0px; padding:0px 7px; border:1pt solid rgb(179,204,130)">
+<p style="word-wrap:break-word; margin-top:5px; margin-bottom:5px; padding-top:0px; padding-bottom:0px">
+<span style="word-wrap:break-word; font-family:'Times New Roman'; font-size:14pt"><span style="word-wrap:break-word">Drivers</span></span></p>
+</td>
+<td style="word-wrap:break-word; margin:0px; padding:0px 7px; border-style:solid solid solid none; border-top-color:rgb(179,204,130); border-top-width:1pt; border-bottom-color:rgb(179,204,130); border-bottom-width:1pt; border-right-color:rgb(179,204,130); border-right-width:1pt">
+<p style="word-wrap:break-word; margin-top:5px; margin-bottom:5px; padding-top:0px; padding-bottom:0px">
+<span style="word-wrap:break-word; font-size:14pt"><span style="word-wrap:break-word; font-family:宋体">存放</span><span style="word-wrap:break-word; font-family:'Times New Roman'">stm32</span><span style="word-wrap:break-word; font-family:宋体">相关的驱动，比如：延时函数等</span></span></p>
+</td>
+</tr>
+<tr style="word-wrap:break-word; background-color:rgb(205,221,172)">
+<td style="word-wrap:break-word; margin:0px; padding:0px 7px; border-style:none solid solid; border-left-color:rgb(179,204,130); border-left-width:1pt; border-bottom-color:rgb(179,204,130); border-bottom-width:1pt; border-right-color:rgb(179,204,130); border-right-width:1pt">
+<p style="word-wrap:break-word; margin-top:5px; margin-bottom:5px; padding-top:0px; padding-bottom:0px">
+<span style="word-wrap:break-word; font-family:'Times New Roman'; font-size:14pt"><span style="word-wrap:break-word">Devices</span></span></p>
+</td>
+<td style="word-wrap:break-word; margin:0px; padding:0px 7px; border-style:none solid solid none; border-bottom-color:rgb(179,204,130); border-bottom-width:1pt; border-right-color:rgb(179,204,130); border-right-width:1pt">
+<p style="word-wrap:break-word; margin-top:5px; margin-bottom:5px; padding-top:0px; padding-bottom:0px">
+<span style="word-wrap:break-word; font-family:宋体; font-size:14pt">存放开发板上涉及的硬件设备相关代码</span></p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p style="word-wrap:break-word; margin-top:5px; margin-bottom:5px; padding-top:0px; padding-bottom:0px; color:rgb(102,102,102); font-family:宋体,Arial; line-height:26px">
+<span style="word-wrap:break-word; font-size:14pt"><span style="word-wrap:break-word; font-family:宋体">工程中</span><span style="word-wrap:break-word; font-family:'Times New Roman'">File-&gt;New</span><span style="word-wrap:break-word; font-family:宋体">，新建下面的一些文件。</span><span style="word-wrap:break-word; font-family:'Times New Roman'"></span></span></p>
+<div style="word-wrap:break-word; color:rgb(102,102,102); font-family:宋体,Arial; line-height:26px">
+<table border="0" style="word-wrap:break-word; border-collapse:collapse">
+<tbody valign="top" style="word-wrap:break-word">
+<tr style="word-wrap:break-word">
+<td style="word-wrap:break-word; margin:0px; padding:0px 7px; border:0.5pt solid">
+<p style="word-wrap:break-word; margin-top:5px; margin-bottom:5px; padding-top:0px; padding-bottom:0px">
+<span style="word-wrap:break-word; font-family:'Times New Roman'; font-size:14pt">Drivers/delay.h</span></p>
+</td>
+<td style="word-wrap:break-word; margin:0px; padding:0px 7px; border-style:solid solid solid none; border-top-width:0.5pt; border-bottom-width:0.5pt; border-right-width:0.5pt">
+<p style="word-wrap:break-word; margin-top:5px; margin-bottom:5px; padding-top:0px; padding-bottom:0px">
+<span style="word-wrap:break-word; font-family:宋体; font-size:14pt">延时函数头文件</span></p>
+</td>
+</tr>
+<tr style="word-wrap:break-word">
+<td style="word-wrap:break-word; margin:0px; padding:0px 7px; border-style:none solid solid; border-left-width:0.5pt; border-bottom-width:0.5pt; border-right-width:0.5pt">
+<p style="word-wrap:break-word; margin-top:5px; margin-bottom:5px; padding-top:0px; padding-bottom:0px">
+<span style="word-wrap:break-word; font-family:'Times New Roman'; font-size:14pt">Drivers/delay.c</span></p>
+</td>
+<td style="word-wrap:break-word; margin:0px; padding:0px 7px; border-style:none solid solid none; border-bottom-width:0.5pt; border-right-width:0.5pt">
+<p style="word-wrap:break-word; margin-top:5px; margin-bottom:5px; padding-top:0px; padding-bottom:0px">
+<span style="word-wrap:break-word; font-family:宋体; font-size:14pt">延时函数源文件</span></p>
+</td>
+</tr>
+<tr style="word-wrap:break-word">
+<td style="word-wrap:break-word; margin:0px; padding:0px 7px; border-style:none solid solid; border-left-width:0.5pt; border-bottom-width:0.5pt; border-right-width:0.5pt">
+<p style="word-wrap:break-word; margin-top:5px; margin-bottom:5px; padding-top:0px; padding-bottom:0px">
+<span style="word-wrap:break-word; font-family:'Times New Roman'; font-size:14pt">Devices/led.h</span></p>
+</td>
+<td style="word-wrap:break-word; margin:0px; padding:0px 7px; border-style:none solid solid none; border-bottom-width:0.5pt; border-right-width:0.5pt">
+<p style="word-wrap:break-word; margin-top:5px; margin-bottom:5px; padding-top:0px; padding-bottom:0px">
+<span style="word-wrap:break-word; font-size:14pt"><span style="word-wrap:break-word; font-family:'Times New Roman'">LED</span><span style="word-wrap:break-word; font-family:宋体">流水灯头文件</span></span></p>
+</td>
+</tr>
+<tr style="word-wrap:break-word">
+<td style="word-wrap:break-word; margin:0px; padding:0px 7px; border-style:none solid solid; border-left-width:0.5pt; border-bottom-width:0.5pt; border-right-width:0.5pt">
+<p style="word-wrap:break-word; margin-top:5px; margin-bottom:5px; padding-top:0px; padding-bottom:0px">
+<span style="word-wrap:break-word; font-family:'Times New Roman'; font-size:14pt">Devices/led.c</span></p>
+</td>
+<td style="word-wrap:break-word; margin:0px; padding:0px 7px; border-style:none solid solid none; border-bottom-width:0.5pt; border-right-width:0.5pt">
+<p style="word-wrap:break-word; margin-top:5px; margin-bottom:5px; padding-top:0px; padding-bottom:0px">
+<span style="word-wrap:break-word; font-size:14pt"><span style="word-wrap:break-word; font-family:'Times New Roman'">LED</span><span style="word-wrap:break-word; font-family:宋体">流水灯源文件</span></span></p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p style="word-wrap:break-word; margin-top:5px; margin-bottom:5px; padding-top:0px; padding-bottom:0px; color:rgb(102,102,102); font-family:宋体,Arial; line-height:26px">
+<span style="word-wrap:break-word; color:red; font-size:14pt"><span style="word-wrap:break-word; font-family:宋体">注：作为一种好的习惯，每个</span><span style="word-wrap:break-word; font-family:'Times New Roman'">.c</span><span style="word-wrap:break-word; font-family:宋体">文件都应该有一个对应的</span><span style="word-wrap:break-word; font-family:'Times New Roman'">.h</span><span style="word-wrap:break-word; font-family:宋体">文件。</span><span style="word-wrap:break-word; font-family:'Times New Roman'"></span></span></p>
+<p style="word-wrap:break-word; margin-top:5px; margin-bottom:5px; padding-top:0px; padding-bottom:0px; color:rgb(102,102,102); font-family:宋体,Arial; line-height:26px">
+<span style="word-wrap:break-word; font-size:14pt"><span style="word-wrap:break-word; font-family:宋体">添加代码：</span><span style="word-wrap:break-word; font-family:'Times New Roman'"></span></span></p>
+<p style="word-wrap:break-word; margin-top:5px; margin-bottom:5px; padding-top:0px; padding-bottom:0px; color:rgb(102,102,102); font-family:宋体,Arial; line-height:26px">
+<span style="word-wrap:break-word; color:rgb(0,32,96); font-family:'Courier New'; font-size:12pt"><span style="word-wrap:break-word">led.c</span></span></p>
+<p style="word-wrap:break-word; margin-top:5px; margin-bottom:5px; padding-top:0px; padding-bottom:0px; color:rgb(102,102,102); font-family:宋体,Arial; line-height:26px">
+</p>
+<pre name="code" class="cpp">/*
+* LED example
+* Author : xiahouzuoxin
+* Date : 2013.08
+*/
+#include &quot;LED.h&quot;
+ 
+GPIO_InitTypeDef LED_InitStructure;
+ 
+/********************************************************************
+Function Name: Init_LED
+Author : 夏侯佐鑫
+Date : 2011-09-28
+Description :
+Inputs : None
+Outputs : None
+Notes :
+Revision :
+********************************************************************/
+void InitLED(void)
+{
+//使能PA端口时钟
+RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOA, ENABLE);
+ 
+    //端口配置推挽输出
+    LED_InitStructure.GPIO_Pin = LED1 | LED2 | LED3 | LED4;
+    LED_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
+    LED_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP;    
+    GPIO_Init(GPIOA, &amp;LED_InitStructure);
+ 
+    //初始输出高电平
+    GPIO_SetBits(GPIOA, LED1 | LED2 | LED3 | LED4);
+}
+ 
+/********************************************************************
+Function Name: Flash_LED
+Author : xiahouzuoxin
+Date : 2011-09-28
+Description :
+Inputs : None
+Outputs : None
+Notes :
+Revision :
+********************************************************************/
+void FlashLED(void)
+{
+GPIO_SetBits(GPIOA, LED2 | LED3 | LED4);
+    GPIO_ResetBits(GPIOA, LED1);
+    delay_ms(500);
+GPIO_SetBits(GPIOA, LED1 | LED3 | LED4);
+    GPIO_ResetBits(GPIOA, LED2);
+    delay_ms(500);
+GPIO_SetBits(GPIOA, LED1 | LED2 | LED4);
+    GPIO_ResetBits(GPIOA, LED3);
+    delay_ms(500);
+GPIO_SetBits(GPIOA, LED1 | LED2 | LED3);
+    GPIO_ResetBits(GPIOA, LED4);
+    delay_ms(500);
+}</pre>
+<p></p>
+<p style="word-wrap:break-word; margin-top:5px; margin-bottom:5px; padding-top:0px; padding-bottom:0px; color:rgb(102,102,102); font-family:宋体,Arial; line-height:26px">
+<span style="word-wrap:break-word; color:rgb(0,32,96); font-family:'Courier New'; font-size:12pt"><span style="word-wrap:break-word">led.h</span></span></p>
+<p style="word-wrap:break-word; margin-top:5px; margin-bottom:5px; padding-top:0px; padding-bottom:0px; color:rgb(102,102,102); font-family:宋体,Arial; line-height:26px">
+</p>
+<pre name="code" class="cpp">/*
+* LED example
+* Author : xiahouzuoxin
+* Date : 2013.08
+*/
+#ifndef __LED_H__
+#define __LED_H__
+ 
+#include &quot;../Headers/includes.h&quot;
+ 
+#define LED1                      GPIO_Pin_4
+#define LED2                      GPIO_Pin_5
+#define LED3                      GPIO_Pin_6
+#define LED4                      GPIO_Pin_7
+ 
+extern void InitLED(void);
+extern void FlashLED(void);
+ 
+#endif</pre>
+<p></p>
+<p style="word-wrap:break-word; margin-top:5px; margin-bottom:5px; padding-top:0px; padding-bottom:0px; color:rgb(102,102,102); font-family:宋体,Arial; line-height:26px">
+<span style="word-wrap:break-word; color:rgb(0,32,96); font-family:'Courier New'; font-size:12pt"><span style="word-wrap:break-word">delay.h</span></span></p>
+<p style="word-wrap:break-word; margin-top:5px; margin-bottom:5px; padding-top:0px; padding-bottom:0px; color:rgb(102,102,102); font-family:宋体,Arial; line-height:26px">
+</p>
+<pre name="code" class="cpp">#ifndef _DELAY_H
+#define _DELAY_H
+ 
+#include &quot;includes.h&quot;
+ 
+extern void delay_ms(UINT32 ms);
+ 
+#endif</pre>
+<p></p>
+<p style="word-wrap:break-word; margin-top:5px; margin-bottom:5px; padding-top:0px; padding-bottom:0px; color:rgb(102,102,102); font-family:宋体,Arial; line-height:26px">
+<span style="word-wrap:break-word; color:rgb(0,32,96); font-family:'Courier New'; font-size:12pt"><span style="word-wrap:break-word">delay.c</span></span></p>
+<p style="word-wrap:break-word; margin-top:5px; margin-bottom:5px; padding-top:0px; padding-bottom:0px; color:rgb(102,102,102); font-family:宋体,Arial; line-height:26px">
+</p>
+<pre name="code" class="cpp">#include &quot;delay.h&quot;
+ 
+/********************************************************************* DELAY_MS
+* Discription : delay for 1 ms if ms=1, not accurate
+* Author : xiahouzuoxin
+* data : 2012-08-01
+* inputs :    ms -- ms number
+* outputs :
+* Modified :
+********************************************************************/
+void delay_ms(UINT32 ms)
+{
+int i = 0;
+    int j = 0;
+ 
+for(i = 0; i &lt; ms; i++)
+{
+for(j = 0; j &lt; 8040; j++)
+{
+// Delay n ms
+}
+}
+}</pre>
+<p></p>
+<p style="word-wrap:break-word; margin-top:5px; margin-bottom:5px; padding-top:0px; padding-bottom:0px; color:rgb(102,102,102); font-family:宋体,Arial; line-height:26px">
+<span style="word-wrap:break-word; color:rgb(0,32,96); font-family:'Courier New'; font-size:12pt"><span style="word-wrap:break-word">includes.h</span></span></p>
+<p style="word-wrap:break-word; margin-top:5px; margin-bottom:5px; padding-top:0px; padding-bottom:0px; color:rgb(102,102,102); font-family:宋体,Arial; line-height:26px">
+</p>
+<pre name="code" class="cpp">#include &quot;../Devices/LED.h&quot;</pre>
+<p></p>
+<p style="word-wrap:break-word; margin-top:5px; margin-bottom:5px; padding-top:0px; padding-bottom:0px; color:rgb(102,102,102); font-family:宋体,Arial; line-height:26px">
+<span style="word-wrap:break-word; color:rgb(0,32,96); font-family:'Courier New'; font-size:12pt"><span style="word-wrap:break-word">main.c</span></span></p>
+<p style="word-wrap:break-word; margin-top:5px; margin-bottom:5px; padding-top:0px; padding-bottom:0px; color:rgb(102,102,102); font-family:宋体,Arial; line-height:26px">
+</p>
+<pre name="code" class="cpp">#include &quot;includes.h&quot;
+ 
+int main(void)
+{
+InitLED();
+while(1) {
+     FlashLED();
+}
+}</pre>
+<p></p>
+
+</div>
+</div>
+                    </div>                   
+                
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,57 @@
+*** Creating Trace Output File '.\STM324xG_EVAL\STM324xG_EVAL.tra' Ok.
+### Preparing for ADS-LD.
+### Creating ADS-LD Command Line
+### List of Objects: adding '".\stm324xg_eval\stm32f4xx_it.o"'
+### List of Objects: adding '".\stm324xg_eval\main.o"'
+### List of Objects: adding '".\stm324xg_eval\stm324xg_eval_lcd.o"'
+### List of Objects: adding '".\stm324xg_eval\stm324xg_eval.o"'
+### List of Objects: adding '".\stm324xg_eval\stm324xg_eval_fsmc_sram.o"'
+### List of Objects: adding '".\stm324xg_eval\stm324xg_eval_ioe.o"'
+### List of Objects: adding '".\stm324xg_eval\misc.o"'
+### List of Objects: adding '".\stm324xg_eval\stm32f4xx_adc.o"'
+### List of Objects: adding '".\stm324xg_eval\stm32f4xx_can.o"'
+### List of Objects: adding '".\stm324xg_eval\stm32f4xx_crc.o"'
+### List of Objects: adding '".\stm324xg_eval\stm32f4xx_cryp.o"'
+### List of Objects: adding '".\stm324xg_eval\stm32f4xx_cryp_aes.o"'
+### List of Objects: adding '".\stm324xg_eval\stm32f4xx_cryp_des.o"'
+### List of Objects: adding '".\stm324xg_eval\stm32f4xx_cryp_tdes.o"'
+### List of Objects: adding '".\stm324xg_eval\stm32f4xx_dac.o"'
+### List of Objects: adding '".\stm324xg_eval\stm32f4xx_dbgmcu.o"'
+### List of Objects: adding '".\stm324xg_eval\stm32f4xx_dcmi.o"'
+### List of Objects: adding '".\stm324xg_eval\stm32f4xx_dma.o"'
+### List of Objects: adding '".\stm324xg_eval\stm32f4xx_exti.o"'
+### List of Objects: adding '".\stm324xg_eval\stm32f4xx_flash.o"'
+### List of Objects: adding '".\stm324xg_eval\stm32f4xx_fsmc.o"'
+### List of Objects: adding '".\stm324xg_eval\stm32f4xx_gpio.o"'
+### List of Objects: adding '".\stm324xg_eval\stm32f4xx_hash.o"'
+### List of Objects: adding '".\stm324xg_eval\stm32f4xx_hash_md5.o"'
+### List of Objects: adding '".\stm324xg_eval\stm32f4xx_hash_sha1.o"'
+### List of Objects: adding '".\stm324xg_eval\stm32f4xx_i2c.o"'
+### List of Objects: adding '".\stm324xg_eval\stm32f4xx_iwdg.o"'
+### List of Objects: adding '".\stm324xg_eval\stm32f4xx_pwr.o"'
+### List of Objects: adding '".\stm324xg_eval\stm32f4xx_rcc.o"'
+### List of Objects: adding '".\stm324xg_eval\stm32f4xx_rng.o"'
+### List of Objects: adding '".\stm324xg_eval\stm32f4xx_rtc.o"'
+### List of Objects: adding '".\stm324xg_eval\stm32f4xx_sdio.o"'
+### List of Objects: adding '".\stm324xg_eval\stm32f4xx_spi.o"'
+### List of Objects: adding '".\stm324xg_eval\stm32f4xx_syscfg.o"'
+### List of Objects: adding '".\stm324xg_eval\stm32f4xx_tim.o"'
+### List of Objects: adding '".\stm324xg_eval\stm32f4xx_usart.o"'
+### List of Objects: adding '".\stm324xg_eval\stm32f4xx_wwdg.o"'
+### List of Objects: adding '".\stm324xg_eval\system_stm32f4xx.o"'
+### List of Objects: adding '".\stm324xg_eval\startup_stm32f4xx.o"'
+### ADS-LD Command completed:
+--cpu Cortex-M4.fp ".\stm324xg_eval\stm32f4xx_it.o" ".\stm324xg_eval\main.o" ".\stm324xg_eval\stm324xg_eval_lcd.o" ".\stm324xg_eval\stm324xg_eval.o" ".\stm324xg_eval\stm324xg_eval_fsmc_sram.o" ".\stm324xg_eval\stm324xg_eval_ioe.o" ".\stm324xg_eval\misc.o" ".\stm324xg_eval\stm32f4xx_adc.o" ".\stm324xg_eval\stm32f4xx_can.o" ".\stm324xg_eval\stm32f4xx_crc.o" ".\stm324xg_eval\stm32f4xx_cryp.o" ".\stm324xg_eval\stm32f4xx_cryp_aes.o" ".\stm324xg_eval\stm32f4xx_cryp_des.o" ".\stm324xg_eval\stm32f4xx_cryp_tdes.o" ".\stm324xg_eval\stm32f4xx_dac.o" ".\stm324xg_eval\stm32f4xx_dbgmcu.o" ".\stm324xg_eval\stm32f4xx_dcmi.o" ".\stm324xg_eval\stm32f4xx_dma.o" ".\stm324xg_eval\stm32f4xx_exti.o" ".\stm324xg_eval\stm32f4xx_flash.o" ".\stm324xg_eval\stm32f4xx_fsmc.o" ".\stm324xg_eval\stm32f4xx_gpio.o" ".\stm324xg_eval\stm32f4xx_hash.o" ".\stm324xg_eval\stm32f4xx_hash_md5.o" ".\stm324xg_eval\stm32f4xx_hash_sha1.o" ".\stm324xg_eval\stm32f4xx_i2c.o" ".\stm324xg_eval\stm32f4xx_iwdg.o" ".\stm324xg_eval\stm32f4xx_pwr.o" ".\stm324xg_eval\stm32f4xx_rcc.o" ".\stm324xg_eval\stm32f4xx_rng.o" ".\stm324xg_eval\stm32f4xx_rtc.o" ".\stm324xg_eval\stm32f4xx_sdio.o" ".\stm324xg_eval\stm32f4xx_spi.o" ".\stm324xg_eval\stm32f4xx_syscfg.o" ".\stm324xg_eval\stm32f4xx_tim.o" ".\stm324xg_eval\stm32f4xx_usart.o" ".\stm324xg_eval\stm32f4xx_wwdg.o" ".\stm324xg_eval\system_stm32f4xx.o" ".\stm324xg_eval\startup_stm32f4xx.o" --library_type=microlib --strict --scatter ".\STM324xG_EVAL\STM324xG_EVAL.sct" 
+--summary_stderr --info summarysizes --map --xref --callgraph --symbols 
+--info sizes --info totals --info unused --info veneers 
+ --list ".\STM324xG_EVAL\STM324xG_EVAL.map" -o ".\STM324xG_EVAL\STM324xG_EVAL.axf"### Preparing Environment (PrepEnvAds)
+### ADS-LD Output File: '.\STM324xG_EVAL\STM324xG_EVAL.axf'
+### ADS-LD Command File: '.\STM324xG_EVAL\STM324xG_EVAL.lnp'
+### Checking for dirty Components...
+### Creating CmdFile '.\STM324xG_EVAL\STM324xG_EVAL.lnp', Handle=0x000003AC
+### Writing '.lnp' file
+### ADS-LD Command file '.\STM324xG_EVAL\STM324xG_EVAL.lnp' is ready.
+### ADS-LD: About to start ADS-LD Thread.
+### ADS-LD: executed with 0 errors
+### Updating obj list
+### LDADS_file() completed.
